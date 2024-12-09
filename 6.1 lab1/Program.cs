@@ -12,19 +12,23 @@ namespace _6._1_lab1
         {
             Circle circle1 = new Circle("Red", 5);
             Rectangle rect1 = new Rectangle("Blue", 7, 6);
-            circle1.Display();
-            rect1.Display();
+            Shape[] shapes = { circle1, rect1};
+            for (int i = 0; i < shapes.Length; i++)
+            {
+                shapes[i].Display();
+            }
+            Console.WriteLine(circle1.perim());
+            Console.WriteLine(rect1.area());
         }
     }
     class Shape
     {
-
         public string Color;
         public Shape(string color)
         {
             Color = color;
         }
-        public void Display()
+        public virtual void Display()
         {
             Console.WriteLine($"This shape is {Color}");
         }
@@ -37,9 +41,13 @@ namespace _6._1_lab1
         {
             Radius = radius;
         }
-        public new void Display()
+        public override void Display()
         {
             Console.WriteLine($"This circle is {Color} and the radius is {Radius}. ");
+        }
+        public double perim()
+        {
+            return 2 * Math.PI * Radius;
         }
     }
     class Rectangle : Shape
@@ -51,9 +59,13 @@ namespace _6._1_lab1
             Length = length;
             Width = width;
         }
-        public new void Display()
+        public override void Display()
         {
             Console.WriteLine($"This rectangle is {Color} and has a length of {Length} and a width of {Width}.");
+        }
+        public double area()
+        {
+            return Length * Width;
         }
     }
 }
